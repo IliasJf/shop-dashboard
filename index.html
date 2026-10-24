@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A sales and stock dashboard for a small neighbourhood shop: daily sales, busy hours, best sellers and low-stock alerts.">
+  <meta name="theme-color" content="#1d5ee6">
+  <title>Shop Dashboard · Hanout Al Baraka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__shop">
+      <span class="topbar__logo" aria-hidden="true">HB</span>
+      <div>
+        <h1 class="topbar__name">Hanout Al Baraka</h1>
+        <p class="topbar__meta">Ben Slimane · open 08:00–22:00</p>
+      </div>
+    </div>
+
+    <div class="topbar__filters">
+      <div class="segmented" role="radiogroup" aria-label="Period">
+        <button type="button" role="radio" aria-checked="true" data-days="7">7 days</button>
+        <button type="button" role="radio" aria-checked="false" data-days="30">30 days</button>
+        <button type="button" role="radio" aria-checked="false" data-days="90">90 days</button>
+      </div>
+      <label class="select">
+        <span class="sr-only">Category</span>
+        <select id="category">
+          <option value="all">All categories</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <p class="period" id="period-label">Last 7 days</p>
+
+    <section class="kpis" aria-label="Key numbers">
+      <article class="kpi">
+        <h2 class="kpi__label">Sales</h2>
+        <p class="kpi__value" id="kpi-revenue">–</p>
+        <p class="kpi__delta" id="kpi-revenue-delta"></p>
+      </article>
+      <article class="kpi">
+        <h2 class="kpi__label">Customers served</h2>
+        <p class="kpi__value" id="kpi-orders">–</p>
+        <p class="kpi__delta" id="kpi-orders-delta"></p>
+      </article>
+      <article class="kpi">
+        <h2 class="kpi__label">Average basket</h2>
+        <p class="kpi__value" id="kpi-basket">–</p>
+        <p class="kpi__delta" id="kpi-basket-delta"></p>
+      </article>
+      <article class="kpi">
+        <h2 class="kpi__label">Items sold</h2>
+        <p class="kpi__value" id="kpi-items">–</p>
+        <p class="kpi__delta" id="kpi-items-delta"></p>
+      </article>
+    </section>
+
+    <section class="panel panel--chart" aria-labelledby="chart-title">
+      <div class="panel__head">
+        <h2 class="panel__title" id="chart-title">Daily sales</h2>
+        <p class="panel__note" id="chart-note"></p>
+      </div>
+      <div class="chart" id="chart" role="img" aria-label="Bar chart of daily sales"></div>
+      <div class="tooltip" id="tooltip" hidden></div>
+    </section>
+
+    <section class="panel panel--stock" aria-labelledby="stock-title">
+      <div class="panel__head">
+        <h2 class="panel__title" id="stock-title">Low stock</h2>
+        <p class="panel__note" id="stock-note"></p>
+      </div>
+      <ul class="stock" id="stock-list"></ul>
+    </section>
+
+    <section class="panel panel--hours" aria-labelledby="hours-title">
+      <div class="panel__head">
+        <h2 class="panel__title" id="hours-title">Busy hours</h2>
+        <p class="panel__note" id="hours-note"></p>
+      </div>
+      <div class="heatmap-wrap">
+        <table class="heatmap" id="heatmap"></table>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <span>Quiet</span><span class="legend__scale"></span><span>Busy</span>
+      </div>
+    </section>
+
+    <section class="panel panel--top" aria-labelledby="top-title">
+      <div class="panel__head">
+        <h2 class="panel__title" id="top-title">Best sellers</h2>
+        <p class="panel__note">By sales in dirhams</p>
+      </div>
+      <table class="top">
+        <thead>
+          <tr><th scope="col">Product</th><th scope="col" class="num">Units</th><th scope="col" class="num">Sales</th></tr>
+        </thead>
+        <tbody id="top-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Demo with sample data for a fictional shop. Built by <a href="https://iliasjf.github.io">Ilias Jafaoui</a> with HTML, CSS and JavaScript, no libraries. <a href="https://github.com/IliasJf/shop-dashboard">View the code</a></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
